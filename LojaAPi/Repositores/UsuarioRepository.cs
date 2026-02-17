@@ -21,5 +21,11 @@ namespace LojaAPi.Repositores
         { 
             return _context.Usuarios.ToList();  // _context.Usuarios já tem todas as funções ex: get, push // ToList é para o back transformar a tabela do banco em uma lista
         }
+
+        public Boolean VerificarSeJaExisteEmail(String emailCriado)
+        {
+            var usuarioEncontrado = _context.Usuarios.ToList().Find(x => x.Email == emailCriado);        // Find é como se fosse um if e um for, percorre toda a lista até achar o que vc quer 
+            return (usuarioEncontrado != null);
+        }
     }
 }

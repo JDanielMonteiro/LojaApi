@@ -11,7 +11,7 @@ namespace LojaAPi.Repositores
 
         }
 
-        public DbSet<Usuario> Usuarios { get; set; } // toda vez que for declarada uma varialvel public no c++ por padrão coloca esse { get; set; } // aqui esta sendo declarado a variavel usuarios do tipo usuario, e o DbSet é como se fose um tipo de lista de banco
+        public DbSet<Usuario> Usuarios { get; set; } // toda vez que for declarada uma varialvel public no c++ por padrão coloca esse { get; set; } // aqui esta sendo declarado a variavel usuarios do tipo usuario, e o DbSet é como se fose um tipo de lista de banco DbSet é quem vai no banco e trás os dados pro backend mas o c# não consegue manipular os dados do DbSet
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) // essa função é para representar a tabela do banco, os daods não seram trabalhados ddentro dela , ela só serve para fazer o "de para" para referenciar as tabelas do banco
         {
