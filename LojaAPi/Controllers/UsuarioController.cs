@@ -1,4 +1,5 @@
 using LojaAPi.Entites;
+using LojaAPi.Entites.DTO;
 using LojaAPi.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,12 +22,9 @@ namespace LojaAPi.Controllers
         }
 
         [HttpPost]
-        public IActionResult CriarUsuario(  // IActionResult é uma função pronta 
-         [FromForm] string password,
-         [FromForm] string email,
-         [FromForm] int tipo)
+        public IActionResult CriarUsuario([FromBody] UsuarioCriacaoDto usuarioCriacaoController) // IActionResult é uma função pronta 
         {
-            _usuarioService.AdicionarNovoUsuario(password, email, tipo);
+            _usuarioService.AdicionarNovoUsuario(usuarioCriacaoController);
             return Ok("tudo ok"); // o nome Ok é uma função pré ponta que transforma tudo que ta dentro dele em IActionResult
         }
     }
