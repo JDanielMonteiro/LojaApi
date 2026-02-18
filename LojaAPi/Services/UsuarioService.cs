@@ -48,6 +48,24 @@ namespace LojaAPi.Services
             _repository.Adicionar(novoUsuario);
         }
 
+        public UsuarioCriacaoDto? BuscarDadoPorId(int idProcurado)
+        { 
+            var usuarioEncontrado = _repository.BuscarDadoPorId(idProcurado);
+            var transformadoEmDto = MapearParaDto(usuarioEncontrado);
+            return transformadoEmDto;
+        }
+
+        private UsuarioCriacaoDto MapearParaDto(Usuario usuario)
+        {
+            UsuarioCriacaoDto entidade = new UsuarioCriacaoDto();
+            entidade.Password = usuario.Password;
+            entidade.Email = usuario.Email;
+            entidade.Tipo = usuario.Tipo;
+            entidade.Id = usuario.Id; 
+
+            return entidade;
+        }
+
         private Usuario MapearParaEntidade(UsuarioCriacaoDto dto)
         {
             Usuario entidade = new Usuario();

@@ -22,10 +22,16 @@ namespace LojaAPi.Controllers
         }
 
         [HttpPost]
-        public IActionResult CriarUsuario([FromBody] UsuarioCriacaoDto usuarioCriacaoController) // IActionResult é uma função pronta 
+        public IActionResult CriarUsuario([FromBody] UsuarioCriacaoDto usuarioCriacaoController)     // IActionResult é uma função pronta 
         {
             _usuarioService.AdicionarNovoUsuario(usuarioCriacaoController);
             return Ok("tudo ok"); // o nome Ok é uma função pré ponta que transforma tudo que ta dentro dele em IActionResult
+        }
+
+        [HttpGet("BuscarPorId")]
+        public UsuarioCriacaoDto BuscarPorId([FromQuery] int id) 
+        {
+            return _usuarioService.BuscarDadoPorId(id);
         }
     }
 }

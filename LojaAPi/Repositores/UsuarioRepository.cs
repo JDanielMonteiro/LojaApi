@@ -27,5 +27,11 @@ namespace LojaAPi.Repositores
             var usuarioEncontrado = _context.Usuarios.ToList().Find(x => x.Email == emailCriado);        // Find é como se fosse um if e um for, percorre toda a lista até achar o que vc quer 
             return (usuarioEncontrado != null);
         }
+
+        public Usuario? BuscarDadoPorId(int idProcurado)
+        {
+            var usuarioEncontrado = _context.Usuarios.ToList().Find(x => x.Id == idProcurado);        // Find é como se fosse um if e um for, percorre toda a lista até achar o que vc quer 
+            return usuarioEncontrado;
+        }
     }
 }
