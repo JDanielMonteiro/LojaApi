@@ -21,7 +21,7 @@ namespace LojaAPi.Controllers
             return _usuarioService.ListarUsuarios();
         }
 
-        [HttpPost]
+        [HttpPost("Criar")]
         public IActionResult CriarUsuario([FromBody] UsuarioCriacaoDto usuarioCriacaoController)     // IActionResult é uma função pronta 
         {
             _usuarioService.AdicionarNovoUsuario(usuarioCriacaoController);
@@ -29,9 +29,23 @@ namespace LojaAPi.Controllers
         }
 
         [HttpGet("BuscarPorId")]
-        public UsuarioCriacaoDto BuscarPorId([FromQuery] int id) 
+        public UsuarioCriacaoDto BuscarPorId([FromQuery] int id)                // FromQuery vai ser passado o id na URL
         {
             return _usuarioService.BuscarDadoPorId(id);
+        }
+
+        [HttpPut("Atualizar")]
+        public IActionResult AtualizarUsuario([FromBody] UsuarioCriacaoDto usuarioCriacaoController)     // FromBody É pra quando vc passa mais de um dado e é passado como Json // IActionResult é uma função pronta 
+        {
+            _usuarioService.AtualizarUsuario(usuarioCriacaoController);
+            return Ok("Atualizado com sucesso");                                // o nome Ok é uma função pré ponta que transforma tudo que ta dentro dele em IActionResult
+        }
+
+        [HttpDelete("Deletar")]
+        public IActionResult DeletarUsuario([FromQuery] int id)     // IActionResult é uma função pronta 
+        {
+            _usuarioService.Deletar(id);
+            return Ok("Deletado com sucesso");                                // o nome Ok é uma função pré ponta que transforma tudo que ta dentro dele em IActionResult
         }
     }
 }

@@ -14,7 +14,7 @@ namespace LojaAPi.Repositores
         public void Adicionar(Usuario usuario)
         {
             _context.Usuarios.Add(usuario);
-            _context.SaveChanges();
+            _context.SaveChanges();   // SaveChanges serve para comitar no banco a alteração feita, lembrar do T no DBeaver
         }
 
         public List<Usuario> ListarTodosUsuarios() 
@@ -32,6 +32,18 @@ namespace LojaAPi.Repositores
         {
             var usuarioEncontrado = _context.Usuarios.ToList().Find(x => x.Id == idProcurado);        // Find é como se fosse um if e um for, percorre toda a lista até achar o que vc quer 
             return usuarioEncontrado;
+        }
+
+        public void Atualizar(Usuario usuario) 
+        {
+          _context.Usuarios.Update(usuario);
+            _context.SaveChanges();
+        }
+
+        public void Deletar(Usuario usuario)
+        {
+            _context.Usuarios.Remove(usuario);
+            _context.SaveChanges();
         }
     }
 }

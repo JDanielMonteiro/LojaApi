@@ -84,6 +84,33 @@ namespace LojaAPi.Services
          
         }
 
+        public void AtualizarUsuario(UsuarioCriacaoDto usuarioCriacaoDto) 
+        {
+            if (usuarioCriacaoDto.Password.IsNullOrEmpty())
+            {
+                throw new ArgumentException("Password não pode ser vazio.");
+            }
+
+            if (usuarioCriacaoDto.Email.IsNullOrEmpty())
+            {
+                throw new ArgumentException("Email não pode ser vazio.");
+            }
+
+            if (usuarioCriacaoDto.Tipo == null)                                     // Interessante: O null é importante pq o usuario poderia passar um valor esaço espaço espaço ou comentar // e burlar o sistema pq o sistema acha que por a variavel ser int o usuario não poderia passar um valor diferente.
+            {
+                throw new ArgumentException("Tipo não pode ser vazio.");
+            }
+
+            Usuario novoUsuario = MapearParaEntidade(usuarioCriacaoDto);
+            _repository.Atualizar(novoUsuario);
+
+        }
+
+        public void Deletar(int idDeletar)
+        {
+            var usuarioGenerico = _repository.BuscarDadoPorId(idDeletar);
+            _repository.Deletar(usuarioGenerico);
+        }
 
     }
 }
